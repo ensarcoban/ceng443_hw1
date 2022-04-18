@@ -32,6 +32,7 @@ public class Display extends JPanel {
         Common.getNorthropGrumman().draw((Graphics2D) g);
         Common.getRaytheon().draw((Graphics2D) g);
 
+        Common.getOrders().forEach(order -> order.draw((Graphics2D) g));
 
     }
 }

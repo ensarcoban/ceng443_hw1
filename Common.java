@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Common {
@@ -26,6 +27,10 @@ public class Common {
     private static Corporation lockheedMartin;
     private static Corporation northropGrumman;
     private static Corporation raytheon;
+
+    public static ArrayList<Order> orders = new ArrayList<>();
+
+    public static ArrayList<Order> ordersToDelete = new ArrayList<>();
 
 
     // getters
@@ -83,6 +88,14 @@ public class Common {
         return raytheon;
     }
 
+    public static ArrayList<Order> getOrders() {
+        return orders;
+    }
+
+    public static ArrayList<Order> getOrdersToDelete() {
+        return ordersToDelete;
+    }
+
     static  {
         // TODO: Here you can instantiate entities/fields
         mexico = new Country(195, 700, "Mexico", "/home/enssr/Desktop/ceng4-2/ceng443/hw1/images/mexico.png");
@@ -105,6 +118,16 @@ public class Common {
         if (randomGenerator.nextInt(300) == 0) electronicsPrice.step();
         if (randomGenerator.nextInt(400) == 0) goldPrice.step();
 
+        mexico.step();
+        chile.step();
+        poland.step();
+        nigeria.step();
+        malaysia.step();
+
+
+        orders.removeAll(ordersToDelete);
+        ordersToDelete.clear();
+        orders.forEach(Entity::step);
         // TODO: call other entities' step()
     }
 }

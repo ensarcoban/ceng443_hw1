@@ -17,14 +17,17 @@ public class Corporation extends Entity {
         Image image = new ImageIcon(path).getImage();
         g2d.drawImage(image, position.getIntX(), position.getIntY(), 100, 100, null);
         g2d.setFont(font);
+        g2d.setColor(Color.BLACK);
         g2d.drawString(this.name, position.getIntX()+25, position.getIntY());
+        g2d.setColor(Color.BLUE);
         g2d.drawString("State", position.getIntX()+20, position.getIntY()+120);
+        g2d.setColor(new Color(180, 0, 0));
         g2d.drawString("0", position.getIntX()+35, position.getIntY()+140);
     }
 
     @Override
     public void step() {
-
+        this.position.setY(this.position.getIntY()+2);
     }
     // TODO
     // Corporation image is 100 x 100
