@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.Objects;
 
 public class Country extends Entity {
     private final String name;
@@ -92,7 +91,7 @@ public class Country extends Entity {
 //        Order order = new BuyGoldOrder(position.getX(), position.getY());
 //        Common.orders.add(order);
         if (Common.getRandomGenerator().nextInt(1000) == 0) {
-            Order.OrderFactory(this);
+            Order.orderFactory(this);
         }
     }
     // TODO

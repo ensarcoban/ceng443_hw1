@@ -61,7 +61,7 @@ public abstract class Order extends Entity {
         return sourceCountry;
     }
 
-    public static void OrderFactory(Country sourceCountry) {
+    public static void orderFactory(Country sourceCountry) {
         Random random = new Random();
         Order order;
         int randInt;

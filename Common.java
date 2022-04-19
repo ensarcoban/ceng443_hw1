@@ -118,16 +118,23 @@ public class Common {
         if (randomGenerator.nextInt(300) == 0) electronicsPrice.step();
         if (randomGenerator.nextInt(400) == 0) goldPrice.step();
 
+        // Countries
         mexico.step();
         chile.step();
         poland.step();
         nigeria.step();
         malaysia.step();
 
+        // Corporations
+        boeing.step();
+        generalDynamics.step();
+        lockheedMartin.step();
+        northropGrumman.step();
+        raytheon.step();
 
+        // Orders
         orders.removeAll(ordersToDelete);
         ordersToDelete.clear();
         orders.forEach(Entity::step);
-        // TODO: call other entities' step()
     }
 }
