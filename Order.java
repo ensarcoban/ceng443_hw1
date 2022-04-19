@@ -11,14 +11,14 @@ public abstract class Order extends Entity {
 
     private Country sourceCountry;
 
-    public Order(double x, double y) {
+    public Order(double x, double y, Country sourceCountry) {
         super(x, y);
         Random random = new Random();
         this.destination = new Position(random.nextInt(1920), 100);
         this.amount = random.nextInt(5) + 1;
         this.speedY = random.nextInt(5) + 1;
         this.speedX = this.speedY * ((position.getX() - destination.getX()) / (position.getY() - destination.getY()));
-        System.out.println(this.speedX);
+        this.sourceCountry = sourceCountry;
     }
 
     @Override
@@ -36,6 +36,7 @@ public abstract class Order extends Entity {
         position.setX(position.getX() - getSpeedX()/5);
 
         if (position.getY() <= Common.getHorizontalLineY()) {
+            executeOrder();
             Common.getOrdersToDelete().add(this);
         }
     }
@@ -64,21 +65,23 @@ public abstract class Order extends Entity {
         Random random = new Random();
         Order order;
         int randInt;
-//        if (sourceCountry.getHappiness() <= 50) {
-//            randInt = random.nextInt(2);
-//            if (randInt == 0) {
-//                order = new ElectronicsOrder(sourceCountry.position.getX(), sourceCountry.position.getY());
-//            } else {
-//                order = new FoodOrder(sourceCountry.position.getX(), sourceCountry.position.getY());
-//            }
-//            Common.orders.add(order);
-//        }
+        if (sourceCountry.getHappiness() <= 50) {
+            randInt = random.nextInt(2);
+            if (randInt == 0) {
+                order = new ElectronicsOrder(sourceCountry.position.getX(), sourceCountry.position.getY(), sourceCountry);
+            } else {
+                order = new FoodOrder(sourceCountry.position.getX(), sourceCountry.position.getY(), sourceCountry);
+            }
+            Common.orders.add(order);
+        }
         randInt = random.nextInt(2);
         if (randInt == 0) {
-            order = new BuyGoldOrder(sourceCountry.position.getX(), sourceCountry.position.getY());
+            order = new BuyGoldOrder(sourceCountry.position.getX(), sourceCountry.position.getY(), sourceCountry);
         } else {
-            order = new SellGoldOrder(sourceCountry.position.getX(), sourceCountry.position.getY());
+            order = new SellGoldOrder(sourceCountry.position.getX(), sourceCountry.position.getY(), sourceCountry);
         }
         Common.orders.add(order);
     }
+
+    public abstract void executeOrder();
 }

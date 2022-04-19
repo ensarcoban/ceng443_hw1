@@ -1,8 +1,8 @@
 import java.awt.*;
 
 public class FoodOrder extends Order {
-    public FoodOrder(double x, double y) {
-        super(x, y);
+    public FoodOrder(double x, double y, Country sourceCountry) {
+        super(x, y, sourceCountry);
     }
 
     @Override
@@ -14,6 +14,13 @@ public class FoodOrder extends Order {
     @Override
     public void step() {
         super.step();
+    }
+
+    @Override
+    public void executeOrder() {
+        Country country = this.getSourceCountry();
+        country.setCash(country.getCash() - this.getAmount() * Common.getFoodPrice().getCurrentPrice());
+        country.setHappiness(country.getHappiness() + this.getAmount() * 0.2);
     }
     // TODO
     // RGB --> (245, 222, 179)

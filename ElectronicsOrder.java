@@ -1,8 +1,8 @@
 import java.awt.*;
 
 public class ElectronicsOrder extends Order {
-    public ElectronicsOrder(double x, double y) {
-        super(x, y);
+    public ElectronicsOrder(double x, double y, Country sourceCountry) {
+        super(x, y, sourceCountry);
     }
 
     @Override
@@ -15,6 +15,13 @@ public class ElectronicsOrder extends Order {
     @Override
     public void step() {
         super.step();
+    }
+
+    @Override
+    public void executeOrder() {
+        Country country = this.getSourceCountry();
+        country.setCash(country.getCash() - this.getAmount() * Common.getElectronicsPrice().getCurrentPrice());
+        country.setHappiness(country.getHappiness() + this.getAmount() * 0.4);
     }
     // TODO
     // RGB --> (0, 182, 204)

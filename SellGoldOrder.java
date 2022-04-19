@@ -2,8 +2,8 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
 public class SellGoldOrder extends GoldOrder {
-    public SellGoldOrder(double x, double y) {
-        super(x, y);
+    public SellGoldOrder(double x, double y, Country sourceCountry) {
+        super(x, y, sourceCountry);
     }
 
     @Override
@@ -16,6 +16,16 @@ public class SellGoldOrder extends GoldOrder {
     public void step() {
         super.step();
     }
+
+    @Override
+    public void executeOrder() {
+        Country country = this.getSourceCountry();
+        country.setGold(country.getGold() - this.getAmount());
+        country.setCash(country.getCash() + this.getAmount() * Common.getGoldPrice().getCurrentPrice());
+        country.calculateAndSetWorth();
+    }
+
+
     // TODO
     // RGB --> (180, 0, 0)
 }

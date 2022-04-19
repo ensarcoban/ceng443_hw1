@@ -15,9 +15,9 @@ public class Country extends Entity {
         super(x, y);
         this.name = name;
         this.path = path;
-        this.worth = 8750;
         this.cash = 5000;
         this.gold = 50;
+        this.worth = 8750;
         this.happiness = 50;
 
     }
@@ -48,6 +48,26 @@ public class Country extends Entity {
 
     public double getHappiness() {
         return happiness;
+    }
+
+    public void setWorth(double worth) {
+        this.worth = worth;
+    }
+
+    public void setCash(double cash) {
+        this.cash = cash;
+    }
+
+    public void setGold(double gold) {
+        this.gold = gold;
+    }
+
+    public void setHappiness(double happiness) {
+        this.happiness = happiness;
+    }
+
+    public void calculateAndSetWorth() {
+        this.worth = this.cash + this.gold * Common.getGoldPrice().getCurrentPrice();
     }
 
     @Override
