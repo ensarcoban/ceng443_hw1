@@ -26,4 +26,12 @@ public class BuyGoldOrder extends GoldOrder {
     }
     // TODO
     // RGB --> (0, 200, 0)
+
+    @Override
+    public void interact(Corporation corporation) {
+        System.out.println("interact logic buy gold order");
+        Country country = this.getSourceCountry();
+        country.setCash(country.getCash() - this.getAmount() * Common.getGoldPrice().getCurrentPrice());
+        country.setHappiness(country.getHappiness() - this.getAmount() * 0.1);
+    }
 }

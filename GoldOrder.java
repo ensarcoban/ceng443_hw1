@@ -3,4 +3,6 @@ public abstract class GoldOrder extends Order {
         super(x, y, sourceCountry);
     }
     // TODO
+
+    public abstract void interact(Corporation corporation);
 }

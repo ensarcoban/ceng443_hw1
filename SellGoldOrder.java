@@ -28,4 +28,13 @@ public class SellGoldOrder extends GoldOrder {
 
     // TODO
     // RGB --> (180, 0, 0)
+
+
+    @Override
+    public void interact(Corporation corporation) {
+        System.out.println("interact logic sell gold order");
+        Country country = this.getSourceCountry();
+        country.setGold(country.getGold() - this.getAmount());
+        country.setHappiness(country.getHappiness() - this.getAmount() * 0.1);
+    }
 }
