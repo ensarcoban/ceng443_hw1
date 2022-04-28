@@ -8,6 +8,7 @@ public class Shake extends State {
 
     @Override
     public void update() {
+        // Shakes until counter reaches zero, Then, sets state complete.
         if (this.counter-- == 0) {
             this.setStateComplete(true);
         }

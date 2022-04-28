@@ -23,6 +23,4 @@ public class ElectronicsOrder extends Order {
         country.setCash(country.getCash() - this.getAmount() * Common.getElectronicsPrice().getCurrentPrice());
         country.setHappiness(country.getHappiness() + this.getAmount() * 0.4);
     }
-    // TODO
-    // RGB --> (0, 182, 204)
 }

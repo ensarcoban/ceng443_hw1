@@ -16,6 +16,7 @@ public class Common {
     private static final LivePrice electronicsPrice = new LivePrice(580, 65,"Consumer Electronics", 30, 2, 10, 50);
     private static final LivePrice goldPrice = new LivePrice(1300, 65, "Gold", 75, 3, 50, 100);
 
+    // I defined Country and Corporation variables here.
     private static Country mexico;
     private static Country chile;
     private static Country poland;
@@ -28,8 +29,10 @@ public class Common {
     private static Corporation northropGrumman;
     private static Corporation raytheon;
 
+    // This arrayList holds orders that is available.
     public static ArrayList<Order> orders = new ArrayList<>();
 
+    // This arrayList holds orders that should be deleted in the next circle.
     public static ArrayList<Order> ordersToDelete = new ArrayList<>();
 
 
@@ -48,6 +51,8 @@ public class Common {
     public static LivePrice getElectronicsPrice() { return electronicsPrice; }
     public static LivePrice getGoldPrice() { return goldPrice; }
 
+
+    // getter and setter functions of the countries and corporations are defined here.
     public static Country getMexico() {
         return mexico;
     }
@@ -96,8 +101,8 @@ public class Common {
         return ordersToDelete;
     }
 
+    // I initialized country and corporation objects here.
     static  {
-        // TODO: Here you can instantiate entities/fields
         mexico = new Country(195, 700, "Mexico", "/home/enssr/Desktop/ceng4-2/ceng443/hw1/images/mexico.png");
         chile = new Country(540, 700, "Chile", "/home/enssr/Desktop/ceng4-2/ceng443/hw1/images/chile.png");
         poland = new Country(885, 700, "Poland", "/home/enssr/Desktop/ceng4-2/ceng443/hw1/images/poland.png");
@@ -118,23 +123,24 @@ public class Common {
         if (randomGenerator.nextInt(300) == 0) electronicsPrice.step();
         if (randomGenerator.nextInt(400) == 0) goldPrice.step();
 
-        // Countries
+        // Countries step functions called.
         mexico.step();
         chile.step();
         poland.step();
         nigeria.step();
         malaysia.step();
 
-        // Corporations
+        // Corporations step functions called
         boeing.step();
         generalDynamics.step();
         lockheedMartin.step();
         northropGrumman.step();
         raytheon.step();
 
-        // Orders
+        // Orders that should be deleted are deleted here.
         orders.removeAll(ordersToDelete);
         ordersToDelete.clear();
+        // Orders step functions are called here.
         orders.forEach(Entity::step);
     }
 }

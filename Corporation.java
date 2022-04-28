@@ -27,6 +27,10 @@ public class Corporation extends Entity {
         g2d.drawString("0", position.getIntX()+35, position.getIntY()+140);
     }
 
+    /**
+     * This functions updates the state of the corporation.
+     * If the state is complete. It changes state with a random state.
+     */
     @Override
     public void step() {
         this.state.update();
@@ -34,8 +38,4 @@ public class Corporation extends Entity {
             this.state = State.stateFactory(this);
         }
     }
-    // TODO
-    // Corporation image is 100 x 100
-    // Cash RGB --> (180, 0, 0)
-    // Badge is 20 x 20
 }

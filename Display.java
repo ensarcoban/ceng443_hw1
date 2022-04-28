@@ -19,7 +19,7 @@ public class Display extends JPanel {
         g.drawLine(Common.getSecondVerticalLineX(), 0, Common.getSecondVerticalLineX(), Common.getHorizontalLineY());
         g.drawLine(0, Common.getHorizontalLineY(), Common.getWindowWidth(), Common.getHorizontalLineY());
 
-        // TODO: draw other entities
+        // Draw functions of all countries, corporations and orders are called in Display class
         Common.getMexico().draw((Graphics2D) g);
         Common.getChile().draw((Graphics2D) g);
         Common.getPoland().draw((Graphics2D) g);

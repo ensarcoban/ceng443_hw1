@@ -15,6 +15,9 @@ public class ChaseClosest extends State {
         this.setName("ChaseClosest");
     }
 
+    /**
+     * @return closest order to the corporation.
+     */
     private Position getClosestGoldOrder() {
         // iterate through all gold orders and find the closest one
         double closestDistance = Double.MAX_VALUE;
@@ -28,7 +31,6 @@ public class ChaseClosest extends State {
         }
         return closestPosition;
     }
-    // TODO
 
     @Override
     public void update() {
@@ -53,7 +55,7 @@ public class ChaseClosest extends State {
                 this.speedY = this.speedY / 10;
             }
 
-
+            // Chase end delete the object.
             if (getCorporation().position.distanceTo(destination.getX(), destination.getY()) < 50) {
                 closestOrder.interact(this.getCorporation());
                 Common.getOrdersToDelete().add(closestOrder);

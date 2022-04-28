@@ -22,6 +22,4 @@ public class FoodOrder extends Order {
         country.setCash(country.getCash() - this.getAmount() * Common.getFoodPrice().getCurrentPrice());
         country.setHappiness(country.getHappiness() + this.getAmount() * 0.2);
     }
-    // TODO
-    // RGB --> (245, 222, 179)
 }

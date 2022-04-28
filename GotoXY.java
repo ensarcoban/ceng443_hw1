@@ -7,6 +7,10 @@ public class GotoXY extends State {
     private double speedX;
     private final Position destination;
 
+    /**
+     * Sets random position on the map. Goes to that position at a random speed.
+     * @param corporation
+     */
     public GotoXY(Corporation corporation) {
         super(corporation);
         Random random = new Random();
@@ -36,6 +40,7 @@ public class GotoXY extends State {
     @Override
     public void update() {
 
+        // Goes to random position on the map, then set state complete when corporation reach random position.
         if (getCorporation().position.distanceTo(destination.getX(), destination.getY()) < 50) {
             this.setStateComplete(true);
         }

@@ -11,6 +11,13 @@ public abstract class Order extends Entity {
 
     private Country sourceCountry;
 
+    /**
+     * Random destination and random speed is set in this constructor.
+     * Reference given to sourceCountry.
+     * @param x horizontal position of order.
+     * @param y vertical position of order.
+     * @param sourceCountry is country that produced @this object.
+     */
     public Order(double x, double y, Country sourceCountry) {
         super(x, y);
         Random random = new Random();
@@ -41,6 +48,9 @@ public abstract class Order extends Entity {
         }
     }
 
+    /**
+     * @return amount
+     */
     public int getAmount() {
         return amount;
     }
@@ -53,6 +63,7 @@ public abstract class Order extends Entity {
         return speedX;
     }
 
+
     public Position getDestination() {
         return destination;
     }
@@ -61,6 +72,12 @@ public abstract class Order extends Entity {
         return sourceCountry;
     }
 
+
+    /**
+     * This function is used in Country class. That way, country objects creates orders,
+     * but they don't know type of the order.
+     * @param sourceCountry is the country that creates the order
+     */
     public static void orderFactory(Country sourceCountry) {
         Random random = new Random();
         Order order;
@@ -83,5 +100,10 @@ public abstract class Order extends Entity {
         Common.orders.add(order);
     }
 
+
+    /**
+     * This function handles horizontalLine execution logic for all order types.
+     * All orders implements this according to their different logics.
+     */
     public abstract void executeOrder();
 }

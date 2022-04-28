@@ -24,9 +24,11 @@ public class BuyGoldOrder extends GoldOrder {
         country.setCash(country.getCash() - this.getAmount() * Common.getGoldPrice().getCurrentPrice());
         country.calculateAndSetWorth();
     }
-    // TODO
-    // RGB --> (0, 200, 0)
 
+    /**
+     * This Overridden function handles Corporation BuyGoldOrder interaction logic.
+     * @param corporation is the variable that is interacted with the gold order.
+     */
     @Override
     public void interact(Corporation corporation) {
         System.out.println("interact logic buy gold order");

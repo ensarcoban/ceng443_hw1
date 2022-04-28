@@ -86,19 +86,13 @@ public class Country extends Entity {
         g2d.drawString("Happiness: %s".formatted((int) this.happiness), position.getIntX(), position.getIntY()+280);
     }
 
+    /**
+     * Country creates random orders using static orderFactory method of Order class.
+     */
     @Override
     public void step() {
-//        Order order = new BuyGoldOrder(position.getX(), position.getY());
-//        Common.orders.add(order);
         if (Common.getRandomGenerator().nextInt(1000) == 0) {
             Order.orderFactory(this);
         }
     }
-    // TODO
-    // Country image is 150 x 150
-    // Name RGB --> Black
-    // Worth RGB --> Blue
-    // Cash RGB --> (0, 100, 0)
-    // Gold RGB --> Yellow
-    // Happiness RGB --> (180, 0, 0)
 }

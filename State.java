@@ -27,6 +27,11 @@ public abstract class State {
         this.stateComplete = stateComplete;
     }
 
+    /**
+     * This static function returns a random state and set corporation reference in the state objects.
+     * @param corporation is the object that state belongs to.
+     * @return returns a random state.
+     */
     public static State stateFactory(Corporation corporation) {
         int randInt = Common.getRandomGenerator().nextInt(4);
         if (randInt == 0) {
@@ -40,6 +45,10 @@ public abstract class State {
         }
     }
 
+    /**
+     * Applies the logic of the state for all types. Updates the position of the state, chase the object etc.
+     * Ends state if the state is complete.
+     */
     public void update() {
     }
 }

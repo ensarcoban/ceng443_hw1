@@ -25,11 +25,10 @@ public class SellGoldOrder extends GoldOrder {
         country.calculateAndSetWorth();
     }
 
-
-    // TODO
-    // RGB --> (180, 0, 0)
-
-
+    /**
+     * This Overridden function handles Corporation SellGoldOrder interaction logic.
+     * @param corporation is the variable that is interacted with the gold order.
+     */
     @Override
     public void interact(Corporation corporation) {
         System.out.println("interact logic sell gold order");
