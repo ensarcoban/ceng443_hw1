@@ -1,21 +1,35 @@
 import java.util.Random;
 
+import static java.lang.Math.abs;
+
 public class GotoXY extends State {
     private double speedY;
     private double speedX;
-    private Position destination;
+    private final Position destination;
 
     public GotoXY(Corporation corporation) {
         super(corporation);
         Random random = new Random();
-        this.destination = new Position(random.nextInt(1920), 500);
+        int randomX = random.nextInt(1920);
+        int randomY = random.nextInt(400)+200;
+
+        this.destination = new Position(randomX, randomY);
         if (destination.getY() < getCorporation().position.getY()) {
-            this.speedY = random.nextInt(5) + 1;
+            this.speedY = random.nextInt(3) + 1;
         }
         else {
-            this.speedY = -(random.nextInt(5) + 1);
+            this.speedY = -(random.nextInt(3) + 1);
         }
         this.speedX = this.speedY * ((getCorporation().position.getX() - destination.getX()) / (getCorporation().position.getY() - destination.getY()));
+
+        if (abs(getCorporation().position.getY() - randomY) < 50) {
+            this.speedX = this.speedX / 10;
+            this.speedY = this.speedY / 10;
+        }
+        if (abs(getCorporation().position.getX() - randomX) < 50) {
+            this.speedX = this.speedX / 10;
+            this.speedY = this.speedY / 10;
+        }
         this.setName("GotoXY");
     }
 

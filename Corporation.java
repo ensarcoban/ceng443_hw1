@@ -29,7 +29,6 @@ public class Corporation extends Entity {
 
     @Override
     public void step() {
-//        this.position.setY(this.position.getIntY()+2);
         this.state.update();
         if (this.state.isStateComplete()) {
             this.state = State.stateFactory(this);

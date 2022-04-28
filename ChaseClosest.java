@@ -1,5 +1,7 @@
 import java.util.Random;
 
+import static java.lang.Math.abs;
+
 public class ChaseClosest extends State {
 
     private double speedY;
@@ -35,12 +37,21 @@ public class ChaseClosest extends State {
         this.destination = getClosestGoldOrder();
         if (destination != null) {
             if (destination.getY() < getCorporation().position.getY()) {
-                this.speedY = random.nextInt(5) + 1;
+                this.speedY = random.nextInt(3) + 1;
             }
             else {
-                this.speedY = -(random.nextInt(5) + 1);
+                this.speedY = -(random.nextInt(3) + 1);
             }
             this.speedX = this.speedY * ((getCorporation().position.getX() - destination.getX()) / (getCorporation().position.getY() - destination.getY()));
+
+            if (abs(getCorporation().position.getY() - destination.getY()) < 50 && abs(getCorporation().position.getX() - destination.getX()) > 50) {
+                this.speedX = this.speedX / 10;
+                this.speedY = this.speedY / 10;
+            }
+            if (abs(getCorporation().position.getX() - destination.getX()) < 50 && abs(getCorporation().position.getY() - destination.getY()) > 50) {
+                this.speedX = this.speedX / 10;
+                this.speedY = this.speedY / 10;
+            }
 
 
             if (getCorporation().position.distanceTo(destination.getX(), destination.getY()) < 50) {
